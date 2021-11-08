@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/textView"-->
+<!--        android:fillViewport="true"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+<!--        <LinearLayout-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="end"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="30sp"-->
+<!--                android:text="1234"/>-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="30sp"-->
+<!--                android:text="1234"/>-->
+<!--        </LinearLayout>-->
+<!--    </androidx.core.widget.NestedScrollView>-->
+    <TextView
+        android:id="@+id/field3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:text=""
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/field2"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+        android:id="@+id/field2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:text=""
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/field1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/field1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:text=""
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/activity_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

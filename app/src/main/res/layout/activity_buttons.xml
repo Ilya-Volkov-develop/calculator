@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/delete_text"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:text="@string/ac"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/delete_one_element"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="⌫"
+        android:translationX="-5dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:background="@android:color/transparent"
+        app:layout_constraintStart_toEndOf="@+id/delete_text"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/percent"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="%"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/divide"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/divide"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="/"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:text="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delete_text" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:text="2"
+        app:layout_constraintStart_toEndOf="@+id/button1"
+        app:layout_constraintTop_toBottomOf="@+id/delete_one_element" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="3"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/multiply"
+        app:layout_constraintTop_toBottomOf="@+id/percent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/multiply"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="*"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divide" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="4"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="5"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="6"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/fold"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fold"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="+"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/multiply" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="7"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button8"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="8"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button9"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="9"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/subtract"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/subtract"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="-"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fold" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/sqrt"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="√"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button0"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@id/sqrt"
+        app:layout_constraintTop_toBottomOf="@+id/button8" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/comma"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text=","
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/equals"
+        app:layout_constraintTop_toBottomOf="@+id/button8" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/equals"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:text="="
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtract" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
