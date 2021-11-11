@@ -20,9 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     BigDecimal number1;
     BigDecimal number2;
-    BigDecimal[] arrBigDecimal = {BigDecimal.valueOf(0), BigDecimal.valueOf(0)};
     char mathematicalChar;
-    String[] arrStringNumber = {"0","0"};
+    String[] arrStringNumber = {"",""};
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -61,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         equals.setOnClickListener(v-> equalsMethod());
         deleteAll.setOnClickListener(v -> {
             field.setText("");
-            arrStringNumber[0] = "0";
-            arrStringNumber[1] = "0";
+            arrStringNumber[0] = "";
+            arrStringNumber[1] = "";
             countNumber = 0;
         });
     }
@@ -91,39 +90,56 @@ public class MainActivity extends AppCompatActivity {
         deleteAll = findViewById(R.id.delete_text);
         horizontalScroll = findViewById(R.id.horizontal_scroll);
     }
+    //Получаем последнее число
+    private Boolean setNumberStringFromArr() {
+        String[] arr = field.getText().toString().split("");
+        String string = "";
+        int count = 1;
+        for (int i = arr.length-1; i >= 0; i--){
+            if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/") || i==0) {
+                string = arr[i] + string;
+                if (string.equals("+") || string.equals("-") || string.equals("*") || string.equals("/")) break;
+                arrStringNumber[count] = string;
+                string = "";
+                count--;
+            }
+            else {
+                string = arr[i] + string;
+            }
+        }
+        if (arrStringNumber[0].equals("") || arrStringNumber[1].equals("")) {
+            arrStringNumber[0] = "";
+            arrStringNumber[1] = "";
+            return false;
+        } else return true;
+    }
 
-
-    //Добавление цифры в пример
+    //Добавление цифры или . в пример
     @SuppressLint("SetTextI18n")
     private void setNumber(String number) {
+        if (field.getText().equals("Делить на 0 нельзя!")) field.setText("");
         if (countNumber < 9) {
             String[] arr = field.getText().toString().split("");
             String string = "";
-            for (int i = arr.length-1; i > 0; i--){
-                if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/") || arr[i].equals(" ")) break;
+            for (int i = arr.length-1; i >= 0; i--){
+                if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/")) break;
                 else string = arr[i] + string;
                 if (arr[i].equals(".") && number.equals(".")) {
                     number = "";
                     countNumber--;
                 }
             }
+
             if (string.equals("0") && number.equals("0")) {
                 number = "";
                 countNumber--;
-                field.setText(field.getText() + "" + number);
-            }
-            if (string.equals("0") && !number.equals(".")) {
-                String[] arr2 = field.getText().toString().split("");
-                String string2 = "";
-                for (int i = 0; i < arr2.length-1; i++){
-                    string2+=arr2[i];
-                }
-                countNumber--;
-                field.setText(string2 + "" + number);
-            } else {
-                field.setText(field.getText() + "" + number);
-            }
+            } if (string.equals("") && number.equals(".")) {
+                field.setText("0.");
+                countNumber++;
+            } else if (string.equals("0") && !number.equals(".")) field.setText(number);
+            else field.setText(field.getText() + number);
             countNumber++;
+            if (field.getText().equals("")) field.setText(number);
         }
         scrollingRight();
     }
@@ -154,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
         countNumber = 0;
     }
 
-
     //Процент от числа
     private void percentMethod() {
         if (!field.getText().toString().equals("")) {
@@ -180,32 +195,31 @@ public class MainActivity extends AppCompatActivity {
 
     //метод вызывается каждый раз когда нажимается знак арифметического действия или равно
     private void equalsMethod() {
-        if (!arrStringNumber[1].equals("0")) {
-            if (setNumberStringFromArr()) {
-                number1 = BigDecimal.valueOf(Double.parseDouble(arrStringNumber[0]));
-                mathematicalChar = arrStringNumber[1].charAt(0);
-                arrStringNumber[1] = arrStringNumber[1].replace("-", "").replace("+", "").replace("*", "").replace("/", "");
-                number2 = BigDecimal.valueOf(Double.parseDouble(arrStringNumber[1]));
-                switch (mathematicalChar) {
-                    case '+':
-                        arrStringNumber[0] = String.valueOf(number1.add(number2));
-                        break;
-                    case '-':
-                        arrStringNumber[0] = String.valueOf(number1.subtract(number2));
-                        break;
-                    case '*':
-                        arrStringNumber[0] = String.valueOf(number1.multiply(number2));
-                        break;
-                    case '/':
+        if (setNumberStringFromArr()) {
+            number1 = BigDecimal.valueOf(Double.parseDouble(arrStringNumber[0]));
+            mathematicalChar = arrStringNumber[1].charAt(0);
+            arrStringNumber[1] = arrStringNumber[1].replace("-", "").replace("+", "").replace("*", "").replace("/", "");
+            number2 = BigDecimal.valueOf(Double.parseDouble(arrStringNumber[1]));
+            arrStringNumber[1] = "";
+            switch (mathematicalChar) {
+                case '+':
+                    arrStringNumber[0] = String.valueOf(number1.add(number2));
+                    break;
+                case '-':
+                    arrStringNumber[0] = String.valueOf(number1.subtract(number2));
+                    break;
+                case '*':
+                    arrStringNumber[0] = String.valueOf(number1.multiply(number2));
+                    break;
+                case '/':
+                    try {
                         arrStringNumber[0] = String.valueOf(number1.divide(number2));
-                        break;
-                    default:
-                        arrStringNumber[0] = arrStringNumber[1];
-                        arrStringNumber[1] = "0";
-                        break;
-                }
-                field.setText(editingResult(arrStringNumber[0]));
+                    } catch (Exception e) {
+                        field.setText("Делить на 0 нельзя!");
+                    }
+                    break;
             }
+            if (!field.getText().equals("Делить на 0 нельзя!")) field.setText(editingResult(arrStringNumber[0]));
         }
     }
 
@@ -250,35 +264,6 @@ public class MainActivity extends AppCompatActivity {
             field.setText(resultStr);
         }
     }
-
-    //Получаем последнее число
-    private Boolean setNumberStringFromArr() {
-        String[] arr = field.getText().toString().split("");
-        String string = "";
-        int count = 1;
-        for (int i = arr.length-1; i >= 0; i--){
-            if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/")) {
-                string = arr[i] + string;
-                arrStringNumber[count] = string;
-                string = "";
-                count--;
-            }
-            else {
-                string = arr[i] + string;
-            }
-        }
-        if (arrStringNumber[0].equals("0") || arrStringNumber[1].equals("0")) {
-            arrStringNumber[0] = "0";
-            arrStringNumber[1] = "0";
-            return false;
-        } else return true;
-    }
-
-    //Получаем последний элемент
-//    private String getEndElementString() {
-//        String[] arr = field.getText().toString().split("");
-//        return arr[arr.length-1];
-//    }
 
 
 }
