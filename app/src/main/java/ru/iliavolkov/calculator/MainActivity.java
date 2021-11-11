@@ -1,7 +1,5 @@
 package ru.iliavolkov.calculator;
-//gashjkdoykjitjgd
-//gafdgdfhs//
-//sghsshsh
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
