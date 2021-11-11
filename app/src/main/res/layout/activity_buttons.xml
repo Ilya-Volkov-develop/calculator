@@ -210,7 +210,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@android:color/transparent"
-        android:text=","
+        android:text="."
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/equals"

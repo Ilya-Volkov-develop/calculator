@@ -8,65 +8,49 @@
     tools:context=".MainActivity">
 
 
-<!--    <androidx.core.widget.NestedScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/textView"-->
-<!--        android:fillViewport="true"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
-<!--        <LinearLayout-->
-<!--            android:orientation="vertical"-->
-<!--            android:gravity="end"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="30sp"-->
-<!--                android:text="1234"/>-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="30sp"-->
-<!--                android:text="1234"/>-->
-<!--        </LinearLayout>-->
-<!--    </androidx.core.widget.NestedScrollView>-->
-    <TextView
-        android:id="@+id/field3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        android:text=""
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/field2"
-        app:layout_constraintEnd_toEndOf="parent" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/field3"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="40sp"-->
+<!--        android:text=""-->
+<!--        android:layout_marginBottom="15dp"-->
+<!--        android:layout_marginEnd="15dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/field2"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+
     <TextView
         android:id="@+id/field2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="40sp"
-        android:text=""
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/field1"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/field1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        android:text=""
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="15dp"
+    <HorizontalScrollView
+        android:id="@+id/horizontal_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="15dp"
         app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:layout_gravity="end"
+            android:id="@+id/field1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            android:text=""/>
+
+
+    </HorizontalScrollView>
 
     <TextView
         android:id="@+id/textView"
