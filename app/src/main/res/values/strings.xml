@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">Сalculator</string>
-    <string name="ac">AC</string>
+    <string name="acText">AC</string>
+    <string name="equalsText">=</string>
+    <string name="commaText">.</string>
+    <string name="_0Text">0</string>
+    <string name="sqrtText">√</string>
+    <string name="subtractText">-</string>
+    <string name="_9Text">9</string>
+    <string name="_8Text">8</string>
+    <string name="_7Text">7</string>
+    <string name="foldText">+</string>
+    <string name="_6Text">6</string>
+    <string name="_5Text">5</string>
+    <string name="_4Text">4</string>
+    <string name="multiplyText">*</string>
+    <string name="_3Text">3</string>
+    <string name="_2Text">2</string>
+    <string name="_1Text">1</string>
+    <string name="divideText">/</string>
+    <string name="percentText">%</string>
+    <string name="delete_one_element_text">⌫</string>
 </resources>
