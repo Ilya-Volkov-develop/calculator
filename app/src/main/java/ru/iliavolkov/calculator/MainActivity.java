@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         onClickListenerButtons();
-        logic = new LogicCalc(field, horizontalScroll);
+        logic = new LogicCalc(MainActivity.this,field, horizontalScroll);
     }
 
     private void init() {
