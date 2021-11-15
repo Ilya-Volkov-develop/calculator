@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
             divide,multiply,fold,subtract, deleteOneElement,deleteAll,equals,comma, percent,sqrt;
     TextView field, fieldTest;
     HorizontalScrollView horizontalScroll;
-//    int countNumber = 0;
-    private static final String KEY_COUNT_NUMBER = "COUNT_NUMBER";
 
     BigDecimal number1;
     BigDecimal number2;
@@ -34,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        if (savedInstanceState != null) countNumber = savedInstanceState.getInt(KEY_COUNT_NUMBER, 0);
 
         init();
         onClickListenerButtons();
@@ -90,31 +86,9 @@ public class MainActivity extends AppCompatActivity {
             field.setText("");
             arrStringNumber[0] = "";
             arrStringNumber[1] = "";
-//            countNumber = 0;
         });
     }
-    //Прокрутка scrollView в конец, чтобы отобразался пример корректно
-    private void scrollingRight() { horizontalScroll.post(() -> horizontalScroll.fullScroll(HorizontalScrollView.FOCUS_RIGHT)); }
 
-    //Устанавливаем числа примера в массив arrStringNumber????????????????????????????????????
-    private void setNumberStringFromArr() {
-        String[] arr = field.getText().toString().split("");
-        String string = "";
-        int count = 1;
-        for (int i = arr.length-1; i >= 0; i--){
-            if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/") || i==0) {
-                string = arr[i] + string;
-                if (string.equals("+") || string.equals("-") || string.equals("*") || string.equals("/")) break;
-                arrStringNumber[count] = string;
-                string = "";
-                count--;
-            } else string = arr[i] + string;
-        }
-        if (arrStringNumber[0].equals("") && !arrStringNumber[1].equals("")) {
-            arrStringNumber[0] = arrStringNumber[1];
-            arrStringNumber[1] = "";
-        }
-    }
 
     //Процент от числа
     private void percentMethod() {
@@ -138,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 //        }
     }
 
+    //region Всё работает
     //метод вызывается каждый раз когда нажимается знак арифметического действия или равно
     private void equalsMethod() {
         if (!getLastElement().equals("√")) {
@@ -149,9 +124,6 @@ public class MainActivity extends AppCompatActivity {
                     convertingSquareToNumber(arrStringNumber[0], 0);
                 number1 = BigDecimal.valueOf(Double.parseDouble(arrStringNumber[0]));
             }
-//            else
-//                if (!arrStringNumber[0].equals(""))
-//                arrStringNumber[0] = String.valueOf(BigDecimal.valueOf(Double.parseDouble(arrStringNumber[0])));
             if (!arrStringNumber[1].equals("") && !getLastElement().equals(".") && !getLastElement().equals("√")) {
                 mathematicalChar = arrStringNumber[1].charAt(0);
                 arrStringNumber[1] = arrStringNumber[1].replace("-", "").replace("+", "").replace("*", "").replace("/", "");
@@ -182,62 +154,68 @@ public class MainActivity extends AppCompatActivity {
                 field.setText(editingResult(arrStringNumber[0]));
         }
     }
-
+    //Вычисляет корни в числе
     private void convertingSquareToNumber(String string,int item) {
-        String[] arr = string.split("");
-        String str = "";
-        BigDecimal[] tempNumber = {BigDecimal.valueOf(0),BigDecimal.valueOf(0)};
-        int countBigDecimal = 1;
-        for (int i = arr.length-1; i >= 0; i--) {
-            if (arr[i].equals("√")){
-                tempNumber[countBigDecimal] = BigDecimal.valueOf(Math.sqrt(Double.parseDouble(str)));
-                countBigDecimal--;
-                str = "";
-                if (countBigDecimal == -1) {
-                    tempNumber[1] = tempNumber[0].multiply(tempNumber[1]);
-                    tempNumber[0] = BigDecimal.valueOf(0);
-                    countBigDecimal = 0;
-                }
-            } else if (!arr[i].equals("") && !arr[i].equals("√")) str = arr[i] + str;
+            String[] arr = string.split("");
+            String str = "";
+            BigDecimal[] tempNumber = {BigDecimal.valueOf(0),BigDecimal.valueOf(0)};
+            int countBigDecimal = 1;
+            for (int i = arr.length-1; i >= 0; i--) {
+                if (arr[i].equals("√")){
+                    if (!str.equals("")) {
+                        tempNumber[countBigDecimal] = BigDecimal.valueOf(Math.sqrt(Double.parseDouble(str)));
+                    } else {
+                        tempNumber[countBigDecimal+1] = BigDecimal.valueOf(Math.sqrt(Double.parseDouble(String.valueOf(tempNumber[countBigDecimal+1]))));//BigDecimal.valueOf(Math.sqrt(Double.parseDouble(str)));
+                        countBigDecimal++;
+                    }
+                    countBigDecimal--;
+                    str = "";
+                    if (countBigDecimal == -1) {
+                        tempNumber[1] = tempNumber[0].multiply(tempNumber[1]);
+                        tempNumber[0] = BigDecimal.valueOf(0);
+                        countBigDecimal = 0;
+                    }
+                } else if (!arr[i].equals("") && !arr[i].equals("√")) str = arr[i] + str;
+            }
+            if (!str.equals("")) tempNumber[1] = BigDecimal.valueOf(Double.parseDouble(str)).multiply(tempNumber[1]);
+            arrStringNumber[item] = String.valueOf(tempNumber[1]);
         }
-        if (!str.equals("")) tempNumber[1] = BigDecimal.valueOf(Double.parseDouble(str)).multiply(tempNumber[1]);
-        arrStringNumber[item] = String.valueOf(tempNumber[1]);
+    //Устанавливаем числа примера в массив arrStringNumber
+    private void setNumberStringFromArr() {
+        String[] arr = field.getText().toString().split("");
+        String string = "";
+        int count = 1;
+        for (int i = arr.length-1; i >= 0; i--){
+            if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/") || i==0) {
+                string = arr[i] + string;
+                if (string.equals("+") || string.equals("-") || string.equals("*") || string.equals("/")) break;
+                arrStringNumber[count] = string;
+                string = "";
+                count--;
+            } else string = arr[i] + string;
+        }
+        if (arrStringNumber[0].equals("") && !arrStringNumber[1].equals("")) {
+            arrStringNumber[0] = arrStringNumber[1];
+            arrStringNumber[1] = "";
+        }
     }
-
-    //region Всё работает
     //Добавление цифры или математического знака (. √) в пример
     @SuppressLint("SetTextI18n")
     private void setNumber(String number) {
         if (field.getText().equals("Делить на 0 нельзя!")) field.setText("");
-//        if (countNumber < 9) {
-            if (getLastString().equals("0") && number.equals("0") || getLastElement().equals(".") && number.equals("√")
-                    || checkingIfThereCharInLastString(".") && number.equals(".")) {
-//                countNumber--;
-            } else if(getLastElement().equals("√") && number.equals(".") || getLastElement().equals("") && number.equals(".")) {
-                field.setText(field.getText() + "0.");
-//                countNumber++;
-            }else if ((getLastElement().equals("+") || getLastElement().equals("-")
-                    || getLastElement().equals("*") || getLastElement().equals("/")) && number.equals(".")) {
-                field.setText(field.getText() + "0.");
-//                countNumber++;
-            }else if ((getLastString().equals("0") || getTwoLastElement().equals("√0")) && !number.equals(".") && !number.equals("√")) {
-                deleteOneItem();
-                field.setText(field.getText() + number);
-            }
-            else field.setText(field.getText() + number);
-//            countNumber++;
-//        }
+        if (getLastString().equals("0") && number.equals("0") || getLastElement().equals(".") && number.equals("√")
+                || checkingIfThereCharInString(getLastString(),".") && number.equals(".")) {
+        } else if(getLastElement().equals("√") && number.equals(".") || getLastElement().equals("") && number.equals(".")
+                || (getLastElement().equals("+") || getLastElement().equals("-")
+                || getLastElement().equals("*") || getLastElement().equals("/")) && number.equals(".")) {
+            field.setText(field.getText() + "0.");
+        }else if ((getLastString().equals("0") || getTwoLastElement().equals("√0")) && !number.equals(".") && !number.equals("√")) {
+            deleteOneItem();
+            field.setText(field.getText() + number);
+        }
+        else field.setText(field.getText() + number);
         scrollingRight();
     }
-
-    //Получаем 2 последних элемента в строке field
-    private String getTwoLastElement() {
-        String[] arr = field.getText().toString().split("");
-        try { return arr[arr.length-2] + arr[arr.length-1];
-        } catch (ArrayIndexOutOfBoundsException e) {return "";}
-
-    }
-
     //Математические операции
     @SuppressLint("SetTextI18n")
     private void operation(String s) {
@@ -263,7 +241,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         scrollingRight();
-//        countNumber = 0;
     }
     //Удаляем нули после .
     private String editingResult(String result) {
@@ -288,20 +265,8 @@ public class MainActivity extends AppCompatActivity {
     private void deleteOneItem() {
         if (!field.getText().toString().equals("")) {
             String[] arr = field.getText().toString().split("");
-            if (arr[arr.length - 1].equals("+") || arr[arr.length - 1].equals("-") ||
-                    arr[arr.length - 1].equals("*") ||arr[arr.length - 1].equals("/")) {
-//                countNumber = 1;
-                for (int i = arr.length-2; i > 0; i--){
-                    if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/") || arr[i].equals(" ")) break;
-//                    else countNumber++;
-                }
-            }
             String resultStr = "";
-            for (int i = 0; i < arr.length - 1; i++) {
-                resultStr += arr[i];
-            }
-//            countNumber--;
-//            fieldTest.setText(String.valueOf(countNumber));
+            for (int i = 0; i < arr.length - 1; i++) resultStr += arr[i];
             field.setText(resultStr);
         }
     }
@@ -310,22 +275,22 @@ public class MainActivity extends AppCompatActivity {
         String[] arr = field.getText().toString().split("");
         return arr[arr.length-1];
     }
-    //Получаем последнее слова поля field
+    //Получаем 2 последних элемента в строке field
+    private String getTwoLastElement() {
+        String[] arr = field.getText().toString().split("");
+        try { return arr[arr.length-2] + arr[arr.length-1];
+        } catch (ArrayIndexOutOfBoundsException e) {return "";}
+
+    }
+    //Получаем последнее слова поля field без знака арифметического действия
     private String getLastString(){
         String[] arr = field.getText().toString().split("");
         String string = "";
-
         for (int i = arr.length-1; i >= 0; i--){
             if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/")) break;
             else string = arr[i] + string;
         }
         return string;
-    }
-    //Проверяем содержание символа в последнем элементе
-    private Boolean checkingIfThereCharInLastString(String c) {
-        String[] arr = getLastString().split("");
-        for (int i = 0; i< arr.length; i++) if (arr[i].equals(c)) return true;
-        return false;
     }
     //Проверяем содержание символа в указаном слове
     private Boolean checkingIfThereCharInString(String field, String c) {
@@ -333,12 +298,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i< arr.length; i++) if (arr[i].equals(c)) return true;
         return false;
     }
+    //Прокрутка scrollView в конец, чтобы отображался пример корректно
+    private void scrollingRight() { horizontalScroll.post(() -> horizontalScroll.fullScroll(HorizontalScrollView.FOCUS_RIGHT)); }
     //endregion
-
-
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-//        outState.putInt(KEY_COUNT_NUMBER, countNumber);
-    }
 }
