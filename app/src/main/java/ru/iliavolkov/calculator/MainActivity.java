@@ -1,40 +1,55 @@
 package ru.iliavolkov.calculator;
 
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn0,
-            divide,multiply,fold,subtract, deleteOneElement,deleteAll,equals,comma, percent,sqrt;
-    TextView field;
+    Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn0,divide,multiply,fold,subtract, deleteOneElement,deleteAll,equals,comma, percent,sqrt;
+    TextView field, textView;
     HorizontalScrollView horizontalScroll;
     LogicCalc logic;
+    AppCompatImageView settingImage;
+    ConstraintLayout layoutMainActivity;
+    String themeApp;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         init();
         onClickListenerButtons();
-        logic = new LogicCalc(MainActivity.this,field, horizontalScroll);
+        deleteTopBar();
     }
 
+    private void deleteTopBar() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window w = getWindow();
+            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+    }
     private void init() {
+        textView = findViewById(R.id.textView);
+        settingImage = findViewById(R.id.settingImage);
+        layoutMainActivity = findViewById(R.id.layoutMainActivity);
         btn1 = findViewById(R.id.button1);
         btn2 = findViewById(R.id.button2);
         btn3 = findViewById(R.id.button3);
@@ -57,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
         deleteOneElement = findViewById(R.id.delete_one_element);
         deleteAll = findViewById(R.id.delete_text);
         horizontalScroll = findViewById(R.id.horizontal_scroll);
+        logic = new LogicCalc(MainActivity.this,field, horizontalScroll);
+        themeApp = getSharedPreferences("SharedTheme", Activity.MODE_PRIVATE).getString("Theme","light");
+        switchAndLoadingTheme("night");
     }
     private void onClickListenerButtons() {
         btn1.setOnClickListener(v -> logic.setNumber("1"));
@@ -83,198 +101,57 @@ public class MainActivity extends AppCompatActivity {
             logic.arrStringNumber[0] = "";
             logic.arrStringNumber[1] = "";
         });
+        settingImage.setOnClickListener(v -> summonDialog());
     }
-
-
-
-
-//    //region Всё работает
-//    //метод вызывается каждый раз когда нажимается знак арифметического действия или равно
-//    private void equalsMethod() {
-//        if (!getLastElement().equals("√")) {
-//            setNumberStringFromArr();
-//            if (!arrStringNumber[0].equals("") && !getLastElement().equals("+")
-//                    && !getLastElement().equals("-") && !getLastElement().equals("*")
-//                    && !getLastElement().equals("/") && !getLastElement().equals(".") && !getLastElement().equals("√")) {
-//                if (checkingIfThereCharInString(arrStringNumber[0], "√"))
-//                    convertingSquareToNumber(arrStringNumber[0], 0);
-//                number1 = BigDecimal.valueOf(Double.parseDouble(arrStringNumber[0]));
-//            }
-//            if (!arrStringNumber[1].equals("") && !getLastElement().equals(".") && !getLastElement().equals("√")) {
-//                mathematicalChar = arrStringNumber[1].charAt(0);
-//                arrStringNumber[1] = arrStringNumber[1].replace("-", "").replace("+", "").replace("*", "").replace("/", "");
-//                if (checkingIfThereCharInString(arrStringNumber[1], "√"))
-//                    convertingSquareToNumber(arrStringNumber[1], 1);
-//                number2 = BigDecimal.valueOf(Double.parseDouble(arrStringNumber[1]));
-//                arrStringNumber[1] = "";
-//                switch (mathematicalChar) {
-//                    case '+':
-//                        arrStringNumber[0] = String.valueOf(number1.add(number2));
-//                        break;
-//                    case '-':
-//                        arrStringNumber[0] = String.valueOf(number1.subtract(number2));
-//                        break;
-//                    case '*':
-//                        arrStringNumber[0] = String.valueOf(number1.multiply(number2));
-//                        break;
-//                    case '/':
-//                        try {
-//                            arrStringNumber[0] = String.valueOf(number1.divide(number2));
-//                        } catch (Exception e) {
-//                            field.setText("Делить на 0 нельзя!");
-//                        }
-//                        break;
-//                }
-//            }
-//            if (!field.getText().equals("Делить на 0 нельзя!"))
-//                field.setText(editingResult(arrStringNumber[0]));
-//        }
-//    }
-//    //Вычисляет корни в числе
-//    private void convertingSquareToNumber(String string,int item) {
-//            String[] arr = string.split("");
-//            String str = "";
-//            BigDecimal[] tempNumber = {BigDecimal.valueOf(0),BigDecimal.valueOf(0)};
-//            int countBigDecimal = 1;
-//            for (int i = arr.length-1; i >= 0; i--) {
-//                if (arr[i].equals("√")){
-//                    if (!str.equals("")) {
-//                        tempNumber[countBigDecimal] = BigDecimal.valueOf(Math.sqrt(Double.parseDouble(str)));
-//                    } else {
-//                        tempNumber[countBigDecimal+1] = BigDecimal.valueOf(Math.sqrt(Double.parseDouble(String.valueOf(tempNumber[countBigDecimal+1]))));//BigDecimal.valueOf(Math.sqrt(Double.parseDouble(str)));
-//                        countBigDecimal++;
-//                    }
-//                    countBigDecimal--;
-//                    str = "";
-//                    if (countBigDecimal == -1) {
-//                        tempNumber[1] = tempNumber[0].multiply(tempNumber[1]);
-//                        tempNumber[0] = BigDecimal.valueOf(0);
-//                        countBigDecimal = 0;
-//                    }
-//                } else if (!arr[i].equals("") && !arr[i].equals("√")) str = arr[i] + str;
-//            }
-//            if (!str.equals("")) tempNumber[1] = BigDecimal.valueOf(Double.parseDouble(str)).multiply(tempNumber[1]);
-//            arrStringNumber[item] = String.valueOf(tempNumber[1]);
-//        }
-//    //Устанавливаем числа примера в массив arrStringNumber
-//    private void setNumberStringFromArr() {
-//        String[] arr = field.getText().toString().split("");
-//        String string = "";
-//        int count = 1;
-//        for (int i = arr.length-1; i >= 0; i--){
-//            if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/") || i==0) {
-//                string = arr[i] + string;
-//                if (string.equals("+") || string.equals("-") || string.equals("*") || string.equals("/")) break;
-//                arrStringNumber[count] = string;
-//                string = "";
-//                count--;
-//            } else string = arr[i] + string;
-//        }
-//        if (arrStringNumber[0].equals("") && !arrStringNumber[1].equals("")) {
-//            arrStringNumber[0] = arrStringNumber[1];
-//            arrStringNumber[1] = "";
-//        }
-//    }
-//    //Добавление цифры или математического знака (. √) в пример
-//    @SuppressLint("SetTextI18n")
-//    private void setNumber(String number) {
-//        if (field.getText().equals("Делить на 0 нельзя!")) field.setText("");
-//        if (getLastString().equals("0") && number.equals("0") || getLastElement().equals(".") && number.equals("√")
-//                || checkingIfThereCharInString(getLastString(),".") && number.equals(".")) {
-//        } else if(getLastElement().equals("√") && number.equals(".") || getLastElement().equals("") && number.equals(".")
-//                || (getLastElement().equals("+") || getLastElement().equals("-")
-//                || getLastElement().equals("*") || getLastElement().equals("/")) && number.equals(".")) {
-//            field.setText(field.getText() + "0.");
-//        }else if ((getLastString().equals("0") || getTwoLastElement().equals("√0")) && !number.equals(".") && !number.equals("√")) {
-//            deleteOneItem();
-//            field.setText(field.getText() + number);
-//        }
-//        else field.setText(field.getText() + number);
-//        scrollingRight();
-//    }
-//    //Математические операции
-//    @SuppressLint("SetTextI18n")
-//    private void operation(String s) {
-//        if (!field.getText().toString().equals("") && !getLastElement().equals("√")) {
-//            String[] strings = field.getText().toString().split("");
-//            if (!strings[strings.length - 1].equals("+") && !strings[strings.length - 1].equals("-") &&
-//                    !strings[strings.length - 1].equals("*") && !strings[strings.length - 1].equals("/")) {
-//                if (getLastElement().equals(".")) field.setText(field.getText() + "0");
-//                if (checkingIfThereCharInString(field.getText().toString(),"+") || checkingIfThereCharInString(field.getText().toString(),"-")
-//                        || checkingIfThereCharInString(field.getText().toString(),"*") || checkingIfThereCharInString(field.getText().toString(),"/")) equalsMethod();
-//                field.setText(field.getText() + "" + s);
-//            } else {
-//                String[] arr = field.getText().toString().split("");
-//                String string = "";
-//                if (arr.length != 1) {
-//                    for (int i = 0; i < arr.length - 1; i++) string += arr[i];
-//                    field.setText(string + "" + s);
-//                }
-//            }
-//
-//        } else if (s.equals("-") && !getLastElement().equals("√")) {
-//            field.setText(field.getText() + s);
-//        }
-//
-//        scrollingRight();
-//    }
-//    //Удаляем нули после .
-//    private String editingResult(String result) {
-//        String[] arr = result.split("");
-//        String string = "";
-//        String resStr = "";
-//        for (int i = 0; i < arr.length; i++) {
-//            if (arr[i].equals(".")) {
-//                for (int j = arr.length-1; j > i; j--) {
-//                    if (!arr[j].equals("0")){
-//                        string = arr[j] + string;
-//                    } else if (!string.equals("")) string = arr[j] + string;
-//                }
-//                if (!string.equals("")) string = "."+string;
-//                resStr = resStr + string;
-//                break;
-//            } else resStr += arr[i];
-//        }
-//        return resStr;
-//    }
-//    //Удаляет один элемент
-//    private void deleteOneItem() {
-//        if (!field.getText().toString().equals("")) {
-//            String[] arr = field.getText().toString().split("");
-//            String resultStr = "";
-//            for (int i = 0; i < arr.length - 1; i++) resultStr += arr[i];
-//            field.setText(resultStr);
-//        }
-//    }
-//    //Получаем последний элемент поля field
-//    private String getLastElement() {
-//        String[] arr = field.getText().toString().split("");
-//        return arr[arr.length-1];
-//    }
-//    //Получаем 2 последних элемента в строке field
-//    private String getTwoLastElement() {
-//        String[] arr = field.getText().toString().split("");
-//        try { return arr[arr.length-2] + arr[arr.length-1];
-//        } catch (ArrayIndexOutOfBoundsException e) {return "";}
-//
-//    }
-//    //Получаем последнее слова поля field без знака арифметического действия
-//    private String getLastString(){
-//        String[] arr = field.getText().toString().split("");
-//        String string = "";
-//        for (int i = arr.length-1; i >= 0; i--){
-//            if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/")) break;
-//            else string = arr[i] + string;
-//        }
-//        return string;
-//    }
-//    //Проверяем содержание символа в указаном слове
-//    private Boolean checkingIfThereCharInString(String field, String c) {
-//        String[] arr = field.split("");
-//        for (int i = 0; i< arr.length; i++) if (arr[i].equals(c)) return true;
-//        return false;
-//    }
-//    //Прокрутка scrollView в конец, чтобы отображался пример корректно
-//    private void scrollingRight() { horizontalScroll.post(() -> horizontalScroll.fullScroll(HorizontalScrollView.FOCUS_RIGHT)); }
-//    //endregion
+    //Создаём диалоговое окно
+    private void summonDialog() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View exit_view = inflater.inflate(R.layout.layout_dialog_theme, null);
+        dialog.setView(exit_view);
+        Dialog dialog1 = dialog.create();
+        Button yes = exit_view.findViewById(R.id.yes);
+        Button no = exit_view.findViewById(R.id.no);
+        yes.setOnClickListener(v1 -> {
+            switchAndLoadingTheme("light");
+            dialog1.dismiss();
+        });
+        no.setOnClickListener(v1 -> dialog1.dismiss());
+        dialog1.show();
+    }
+    //Меняем или загружаем тему
+    private void switchAndLoadingTheme(String theme) {
+        if (themeApp.equals(theme)) setTheme("#000000","#ffffff",R.drawable.gear_white, "night");
+        else setTheme("#ffffff","#000000",R.drawable.gear_black, "light");
+        SharedPreferences.Editor editor = getSharedPreferences("SharedTheme", Activity.MODE_PRIVATE).edit();
+        editor.putString("Theme",themeApp).apply();
+    }
+    //Устанавливаем тему
+    private void setTheme(String colorF, String color0, int draw, String theme) {
+        layoutMainActivity.setBackgroundColor(Color.parseColor(colorF));
+        field.setTextColor(Color.parseColor(color0));
+        btn1.setTextColor(Color.parseColor(color0));
+        btn2.setTextColor(Color.parseColor(color0));
+        btn3.setTextColor(Color.parseColor(color0));
+        btn4.setTextColor(Color.parseColor(color0));
+        btn5.setTextColor(Color.parseColor(color0));
+        btn6.setTextColor(Color.parseColor(color0));
+        btn7.setTextColor(Color.parseColor(color0));
+        btn8.setTextColor(Color.parseColor(color0));
+        btn9.setTextColor(Color.parseColor(color0));
+        btn0.setTextColor(Color.parseColor(color0));
+        divide.setTextColor(Color.parseColor(color0));
+        multiply.setTextColor(Color.parseColor(color0));
+        fold.setTextColor(Color.parseColor(color0));
+        subtract.setTextColor(Color.parseColor(color0));
+        deleteOneElement.setTextColor(Color.parseColor(color0));
+        deleteAll.setTextColor(Color.parseColor(color0));
+        equals.setTextColor(Color.parseColor(color0));
+        comma.setTextColor(Color.parseColor(color0));
+        percent.setTextColor(Color.parseColor(color0));
+        sqrt.setTextColor(Color.parseColor(color0));
+        textView.setBackgroundColor(Color.parseColor(color0));
+        settingImage.setBackgroundDrawable(getDrawable(draw));
+        themeApp = theme;
+    }
 }

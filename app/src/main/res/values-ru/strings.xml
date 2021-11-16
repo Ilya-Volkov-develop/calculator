@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Калькулятор</string>
+    <string name="nightTheme">Темная тема</string>
+    <string name="switchTheme">Сменить тему?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="sorry">"Извините, не умею считать с \"E\""</string>
+    <string name="divide0">"Делить на 0 нельзя!"</string>
+</resources>

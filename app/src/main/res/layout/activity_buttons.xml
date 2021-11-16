@@ -3,10 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/delete_text"
         android:text="@string/acText"
         app:layout_constraintEnd_toStartOf="@+id/delete_one_element"
@@ -14,6 +17,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/delete_one_element"
         android:text="@string/delete_one_element_text"
         android:translationX="@dimen/translationX_delete_one_element"
@@ -22,6 +27,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/percent"
         android:text="@string/percentText"
         app:layout_constraintEnd_toStartOf="@+id/divide"
@@ -29,6 +36,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/divide"
         android:text="@string/divideText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +45,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button1"
         android:text="@string/_1Text"
         app:layout_constraintEnd_toStartOf="@+id/button2"
@@ -43,6 +54,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button2"
         android:text="@string/_2Text"
         app:layout_constraintEnd_toStartOf="@+id/button3"
@@ -50,6 +63,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button3"
         android:text="@string/_3Text"
         app:layout_constraintEnd_toStartOf="@+id/multiply"
@@ -57,6 +72,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/multiply"
         android:text="@string/multiplyText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,6 +81,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button4"
         android:text="@string/_4Text"
         app:layout_constraintEnd_toStartOf="@+id/button5"
@@ -71,6 +90,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button5"
         android:text="@string/_5Text"
         app:layout_constraintEnd_toStartOf="@+id/button6"
@@ -78,6 +99,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button6"
         android:text="@string/_6Text"
         app:layout_constraintEnd_toStartOf="@+id/fold"
@@ -85,6 +108,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/fold"
         android:text="@string/foldText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,6 +117,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button7"
         android:text="@string/_7Text"
         app:layout_constraintEnd_toStartOf="@+id/button8"
@@ -99,6 +126,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button8"
         android:text="@string/_8Text"
         app:layout_constraintEnd_toStartOf="@+id/button9"
@@ -106,6 +135,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button9"
         android:text="@string/_9Text"
         app:layout_constraintEnd_toStartOf="@+id/subtract"
@@ -113,6 +144,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/subtract"
         android:text="@string/subtractText"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,6 +153,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/sqrt"
         android:text="@string/sqrtText"
         app:layout_constraintEnd_toStartOf="@+id/button0"
@@ -128,6 +163,8 @@
 
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button0"
         android:text="@string/_0Text"
         app:layout_constraintEnd_toStartOf="@+id/comma"
@@ -135,6 +172,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/comma"
         android:text="@string/commaText"
         app:layout_constraintEnd_toStartOf="@+id/equals"
@@ -142,6 +181,8 @@
         style="@style/StyleButton"/>
 
     <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/equals"
         android:text="@string/equalsText"
         app:layout_constraintEnd_toEndOf="parent"

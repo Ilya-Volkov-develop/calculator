@@ -18,6 +18,7 @@ public class LogicCalc {
     TextView field;
     HorizontalScrollView horizontalScroll;
     Activity MainActivity;
+    int divide0 = R.string.divideText;
 
     LogicCalc(Activity MainActivity,TextView field, HorizontalScrollView horizontalScroll) {
         this.MainActivity = MainActivity;
@@ -52,14 +53,12 @@ public class LogicCalc {
     protected void equalsMethod() {
         if (checkingIfThereCharInString(field.getText().toString(),"E")) {
             field.setText("");
-            makeTextToast("Извините, не умею считать с \"E\"");
+            makeTextToast(R.string.sorry);
         } else {
             if (!getLastElement().equals("√") && !getLastElement().equals("+") && !getLastElement().equals("-")
                     && !getLastElement().equals("*") && !getLastElement().equals("/")) {
                 setNumberStringFromArr();
-                if (!arrStringNumber[0].equals("") && !getLastElement().equals("+")
-                        && !getLastElement().equals("-") && !getLastElement().equals("*")
-                        && !getLastElement().equals("/") && !getLastElement().equals(".") && !getLastElement().equals("√")) {
+                if (!arrStringNumber[0].equals("")  && !getLastElement().equals(".") && !getLastElement().equals("√")) {
                     if (checkingIfThereCharInString(arrStringNumber[0], "√"))
                         convertingSquareToNumber(arrStringNumber[0], 0);
                     number1 = BigDecimal.valueOf(Double.parseDouble(arrStringNumber[0]));
@@ -85,11 +84,11 @@ public class LogicCalc {
                                 field.setText(editingResult(String.valueOf(number1.divide(number2, 7, RoundingMode.HALF_UP))));
                             } catch (Exception e) {
                                 field.setText("");
-                                makeTextToast("Делить на 0 нельзя!");
+                                makeTextToast(R.string.divide0);
                             }
                             break;
                     }
-                }
+                } else field.setText(editingResult(String.valueOf(number1)));
                 arrStringNumber[0] = "";
                 arrStringNumber[1] = "";
                 number1 = BigDecimal.valueOf(0);
@@ -242,6 +241,6 @@ public class LogicCalc {
     //Прокрутка scrollView в конец, чтобы отображался пример корректно
     private void scrollingRight() { horizontalScroll.post(() -> horizontalScroll.fullScroll(HorizontalScrollView.FOCUS_RIGHT)); }
     //Toast
-    private void makeTextToast(String s) { Toast.makeText(MainActivity,s,Toast.LENGTH_SHORT).show(); }
+    private void makeTextToast(int s) { Toast.makeText(MainActivity,s,Toast.LENGTH_SHORT).show(); }
     //endregion
 }
