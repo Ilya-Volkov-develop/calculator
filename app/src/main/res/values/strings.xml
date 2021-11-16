@@ -1,4 +1,29 @@
 <resources>
-    <string name="app_name">Сalculator</string>
-    <string name="ac">AC</string>
+    <string name="app_name">Calculator</string>
+    <string name="acText" translatable="false">AC</string>
+    <string name="equalsText" translatable="false">=</string>
+    <string name="commaText" translatable="false">.</string>
+    <string name="_0Text" translatable="false">0</string>
+    <string name="sqrtText" translatable="false">√</string>
+    <string name="subtractText" translatable="false">-</string>
+    <string name="_9Text" translatable="false">9</string>
+    <string name="_8Text" translatable="false">8</string>
+    <string name="_7Text" translatable="false">7</string>
+    <string name="foldText" translatable="false">+</string>
+    <string name="_6Text" translatable="false">6</string>
+    <string name="_5Text" translatable="false">5</string>
+    <string name="_4Text" translatable="false">4</string>
+    <string name="multiplyText" translatable="false">*</string>
+    <string name="_3Text" translatable="false">3</string>
+    <string name="_2Text" translatable="false">2</string>
+    <string name="_1Text" translatable="false">1</string>
+    <string name="divideText" translatable="false">/</string>
+    <string name="percentText" translatable="false">%</string>
+    <string name="delete_one_element_text" translatable="false">⌫</string>
+    <string name="nightTheme">Dark theme</string>
+    <string name="switchTheme">Change the theme?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="sorry">Sorry, I can not count with E</string>
+    <string name="divide0">You cannot divide by 0!</string>
 </resources>

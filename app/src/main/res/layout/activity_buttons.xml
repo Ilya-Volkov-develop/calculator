@@ -2,230 +2,191 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
 
-    <androidx.appcompat.widget.AppCompatButton
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/delete_text"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="@string/ac"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/acText"
         app:layout_constraintEnd_toStartOf="@+id/delete_one_element"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/delete_one_element"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="⌫"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:translationX="-5dp"
+        android:text="@string/delete_one_element_text"
+        android:translationX="@dimen/translationX_delete_one_element"
         app:layout_constraintEnd_toStartOf="@+id/percent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/percent"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="%"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/percentText"
         app:layout_constraintEnd_toStartOf="@+id/divide"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/divide"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="/"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/divideText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button1"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="1"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/_1Text"
         app:layout_constraintEnd_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/delete_text" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_text"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button2"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="2"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/_2Text"
         app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintTop_toBottomOf="@+id/delete_one_element" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_one_element"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button3"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="3"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/_3Text"
         app:layout_constraintEnd_toStartOf="@+id/multiply"
-        app:layout_constraintTop_toBottomOf="@+id/percent" />
+        app:layout_constraintTop_toBottomOf="@+id/percent"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/multiply"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="*"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/multiplyText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divide" />
+        app:layout_constraintTop_toBottomOf="@+id/divide"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button4"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="4"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/_4Text"
         app:layout_constraintEnd_toStartOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
+        app:layout_constraintTop_toBottomOf="@+id/button1"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button5"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="5"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/_5Text"
         app:layout_constraintEnd_toStartOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button6"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="6"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/_6Text"
         app:layout_constraintEnd_toStartOf="@+id/fold"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/fold"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="+"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/foldText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/multiply" />
+        app:layout_constraintTop_toBottomOf="@+id/multiply"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button7"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="7"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/_7Text"
         app:layout_constraintEnd_toStartOf="@+id/button8"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/button4"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button8"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="8"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/_8Text"
         app:layout_constraintEnd_toStartOf="@+id/button9"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button9"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="9"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/_9Text"
         app:layout_constraintEnd_toStartOf="@+id/subtract"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/subtract"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="-"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/subtractText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fold" />
+        app:layout_constraintTop_toBottomOf="@+id/fold"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/sqrt"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="√"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/sqrtText"
         app:layout_constraintEnd_toStartOf="@+id/button0"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/button7"
+        style="@style/StyleButton"/>
 
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/button0"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="0"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/_0Text"
         app:layout_constraintEnd_toStartOf="@+id/comma"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintTop_toBottomOf="@+id/button8"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/comma"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="."
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/commaText"
         app:layout_constraintEnd_toStartOf="@+id/equals"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintTop_toBottomOf="@+id/button8"
+        style="@style/StyleButton"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
+        android:layout_height="@dimen/layout_height70dp"
+        android:layout_width="@dimen/layout_width100dp"
         android:id="@+id/equals"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:background="@android:color/transparent"
-        android:text="="
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:text="@string/equalsText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subtract" />
+        app:layout_constraintTop_toBottomOf="@+id/subtract"
+        style="@style/StyleButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
