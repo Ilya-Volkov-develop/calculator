@@ -18,7 +18,6 @@ public class LogicCalc {
     TextView field;
     HorizontalScrollView horizontalScroll;
     Activity MainActivity;
-    int divide0 = R.string.divideText;
 
     LogicCalc(Activity MainActivity,TextView field, HorizontalScrollView horizontalScroll) {
         this.MainActivity = MainActivity;
@@ -26,29 +25,60 @@ public class LogicCalc {
         this.horizontalScroll = horizontalScroll;
     }
 
+    //region Всё работает
     //Процент от числа
     protected void percentMethod() {
-//        if (!field.getText().toString().equals("")) {
-//            String[] arrNumber = field.getText().toString().replace(" ","").replace("+", " ").replace("-", " ").replace("*"," ").replace("/"," ").split(" ");
-//            BigDecimal[] arrDecimal = new BigDecimal[arrNumber.length];
-//            for (int i = 0; i < arrNumber.length; i++) arrDecimal[i] = BigDecimal.valueOf(Double.parseDouble(arrNumber[i]));
-//            String strChar = field.getText().toString().replace(" ","");
-//            for (int i = 0; i < 10; i++) strChar = strChar.replace(String.valueOf(i),"");
-//            String[] arrSigns = strChar.replace(".","").split("");
-//            for (int i = 1; i < arrNumber.length; i++) {
-//                switch (arrSigns[i-1]) {
-//                    case "+" : result = result.add(arrDecimal[i]); break;
-//                    case "-" : result = result.subtract(arrDecimal[i]); break;
-//                    case "*" : result = result.multiply(arrDecimal[i]); break;
-//                    case "/" : result = result.divide(arrDecimal[i]); break;
-//                }
-//                field.setText(editingResult(result));
-//            }
-//            fieldTest.setText(String.valueOf(result));
-//        }
+        if (!field.getText().toString().equals("")){
+            if (checkingIfThereCharInString(field.getText().toString(),"E")) {
+                field.setText("");
+                makeTextToast(R.string.sorry);
+            } else if (checkingIfThereCharInString(field.getText().toString(),"+")
+                    || checkingIfThereCharInString(field.getText().toString(),"-")
+                    || checkingIfThereCharInString(field.getText().toString(),"*")
+                    || checkingIfThereCharInString(field.getText().toString(),"/")) {
+                if (!getLastElement().equals("√") && !getLastElement().equals("+") && !getLastElement().equals("-")
+                        && !getLastElement().equals("*") && !getLastElement().equals("/")) {
+                    setNumberStringFromArr();
+                    if (arrStringNumber[1].equals("")) {
+                        field.setText(editingResult(String.valueOf(BigDecimal.valueOf(Double.parseDouble(arrStringNumber[0])/100))));
+                        arrStringNumber[0] = "";
+                    } else {
+                        char charMath = arrStringNumber[1].charAt(0);
+                        arrStringNumber[1] = arrStringNumber[1].replace("+","").replace("-","").replace("*","").replace("/","");
+                        switch (charMath) {
+                            case '+':
+                            case '-':
+                                arrStringNumber[1] = editingResult(String.valueOf(BigDecimal.valueOf(Double.parseDouble(arrStringNumber[0]) * (Double.parseDouble(arrStringNumber[1])/100))));
+                                String[] arr = field.getText().toString().split("");
+                                for (int i = arr.length-1; i>=0; i--) {
+                                    if (!arr[0].equals("-")) {
+                                        if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/")) break;
+                                        deleteOneItem();
+                                    } else {
+                                        deleteOneItem();
+                                        if (arr[i].equals("+") || arr[i].equals("-") || arr[i].equals("*") || arr[i].equals("/")) break;
+                                    }
+                                }
+                                field.setText(field.getText() + arrStringNumber[1]);
+                                break;
+                            case '*':
+                            case '/':
+                                arrStringNumber[1] = editingResult(String.valueOf(BigDecimal.valueOf(Double.parseDouble(arrStringNumber[1])/100)));
+                                String[] arr2 = field.getText().toString().split("");
+                                for (int i = arr2.length-1; i>=0; i--) {
+                                    if (arr2[i].equals("+") || arr2[i].equals("-") || arr2[i].equals("*") || arr2[i].equals("/")) break;
+                                    deleteOneItem();
+                                }
+                                field.setText(field.getText() + arrStringNumber[1]);
+                                break;
+                        }
+                    }
+                }
+            } else {
+                field.setText(editingResult(String.valueOf(BigDecimal.valueOf(Double.parseDouble(field.getText().toString())/100))));
+            }
+        }
     }
-
-    //region Всё работает
     //метод вызывается каждый раз когда нажимается знак арифметического действия или равно
     protected void equalsMethod() {
         if (checkingIfThereCharInString(field.getText().toString(),"E")) {
@@ -96,8 +126,6 @@ public class LogicCalc {
             }
         }
     }
-
-
     //Вычисляет корни в числе
     private void convertingSquareToNumber(String string,int item) {
         String[] arr = string.split("");
@@ -113,11 +141,6 @@ public class LogicCalc {
                     }
                 } else tempNumber = BigDecimal.valueOf(Math.sqrt(Double.parseDouble(String.valueOf(tempNumber))));//BigDecimal.valueOf(Math.sqrt(Double.parseDouble(str)));
                 str = "";
-//                if (countBigDecimal == -1) {
-//                    tempNumber[1] = tempNumber[0].multiply(tempNumber[1]);
-//                    tempNumber[0] = BigDecimal.valueOf(0);
-//                    countBigDecimal = 0;
-//                }
             } else if (!arr[i].equals("") && !arr[i].equals("√")) str = arr[i] + str;
         }
         if (!str.equals("")) tempNumber = BigDecimal.valueOf(Double.parseDouble(str)).multiply(tempNumber);

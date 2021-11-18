@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteTopBar() {
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow();
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -151,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
         comma.setTextColor(Color.parseColor(color0));
         percent.setTextColor(Color.parseColor(color0));
         sqrt.setTextColor(Color.parseColor(color0));
-        textView.setBackgroundColor(Color.parseColor(color0));
         settingImage.setBackgroundDrawable(getDrawable(draw));
         themeApp = theme;
     }
